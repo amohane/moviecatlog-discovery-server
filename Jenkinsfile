@@ -20,6 +20,8 @@ node {
       }
    }
    stage('Build Docker Image'){
-      bat "%dockerHome%\docker build -t amohane/moviecatlog-discovery-server: $BUILD_NUMBER"
+       withEnv(["DOCKER_HOME=$dockerHome"]) {
+          bat (/"%DOCKER_HOME%\docker" build -t amohane/moviecatlog-discovery-server: "$BUILD_NUMBER")
+       }
    }
 }
