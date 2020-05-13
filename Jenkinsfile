@@ -20,6 +20,6 @@ node {
       }
    }
    stage('Build Docker Image'){
-      bat "%dockerHome% build -t amohane/moviecatlog-discovery-server: $BUILD_NUMBER"
+      bat "$dockerHome\docker build -t amohane/moviecatlog-discovery-server: $BUILD_NUMBER"
    }
 }
