@@ -1,6 +1,7 @@
 node {
    def mvnHome
    def dockerHome
+   def dockerImage
    stage('GIT checkout') {
       git 'https://github.com/amohane/moviecatlog-discovery-server.git'
       // Get the Maven tool.
@@ -20,6 +21,12 @@ node {
       }
    }
    stage('Build Docker Image'){
-      docker.build("amohane/moviecatlog-discovery-server:${env.BUILD_NUMBER}")
+      dockerImage=docker.build("amohane/moviecatlog-discovery-server:latest")
+   }
+   stage('Push Docker Image'){
+      dockerImage.push("latest")
+   }
+   stage('Run Docker Image'){
+      dockerImage.run("-d -p 8761:8761 --name moviecatlog-descovery-server")
    }
 }
