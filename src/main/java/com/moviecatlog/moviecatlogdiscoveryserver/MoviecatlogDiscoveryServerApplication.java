@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class MoviecatlogDiscoveryServerApplication {
 	@Value("${msg:Hi}")
 	private String msg;
-	@GetMapping("/hi")
+	@GetMapping("/hello")
 	public String sayHi() {
 		return msg;
 	}
