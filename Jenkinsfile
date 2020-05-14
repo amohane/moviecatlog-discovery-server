@@ -21,12 +21,9 @@ node {
       }
    }
    stage('Build Docker Image'){
-      dockerImage=docker.build("amohane/moviecatlog-discovery-server:latest")
+      dockerImage=docker.build("amohane/moviecatlog-discovery-server:$BUILD_NUMBER")
    }
    stage('Push Docker Image'){
-      dockerImage.push("latest")
-   }
-   stage('Run Docker Image'){
-      dockerImage.run("-d -p 8761:8761 --name moviecatlog-descovery-server")
+      dockerImage.push("$BUILD_NUMBER")
    }
 }
