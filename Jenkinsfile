@@ -3,7 +3,15 @@ node {
    def dockerHome
    def dockerImage
    stage('GIT checkout') {
-	  git branch: 'master', credentialsId: 'github', url: 'https://github.com/amohane/moviecatlog-discovery-server.git'      
+    checkout([$class: 'GitSCM', 
+                          branches: [[name: "${tag}"]], 
+                          doGenerateSubmoduleConfigurations: false, 
+                          extensions: [], 
+                          gitTool: 'Default', 
+                          submoduleCfg: [], 
+                          userRemoteConfigs: [[url: 'https://github.com/amohane/moviecatlog-discovery-server.git']]
+                        ])
+	  //git branch: 'master', credentialsId: 'github', url: 'https://github.com/amohane/moviecatlog-discovery-server.git'      
 	  // Get the Maven tool.
       // ** NOTE: This 'M3' Maven tool must be configured
       // **       in the global configuration.           
