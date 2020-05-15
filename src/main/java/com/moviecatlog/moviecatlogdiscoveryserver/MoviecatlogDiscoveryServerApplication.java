@@ -19,6 +19,13 @@ public class MoviecatlogDiscoveryServerApplication {
 	public String sayHi() {
 		return msg;
 	}
+	@Value("${app.version}")
+	private String appVersion;
+	
+	@GetMapping("version")
+	public String getAppVersion() {
+		return appVersion;
+	}
 
 	public static void main(String[] args) {
 		SpringApplication.run(MoviecatlogDiscoveryServerApplication.class, args);
